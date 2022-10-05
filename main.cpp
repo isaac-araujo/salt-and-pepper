@@ -2,19 +2,10 @@
 #include <fstream>
 #include <cstring>
 #include <vector>
-#include <bits/stdc++.h>
 
 //TODO: lidar com linhas comentadas
 
 using namespace std;
-
-int median(int arr[], int size){
-   sort(arr, arr+size);
-   if (size % 2 != 0)
-      return arr[size/2];
-   return (arr[(size-1)/2] + arr[size/2])/2;
-}
-
 int main (){
 	
 	ifstream file;
@@ -95,55 +86,44 @@ int main (){
 		int maxrow = numrows-1;
 		int maxcol = numcols-1;
 		// borda esq superior
-		int temp[3] = {matrix[0][1],matrix[1][0],matrix[1][1]};
-		matrixResult[0][0] = median(temp, 3);
-		
+		matrixResult[0][0] = (matrix[0][1] + matrix[1][0] + matrix[1][1]) / 3;
 		// borda esq inferior
-		int temp1[3] = {matrix[maxrow][1],matrix[maxrow-1][0],matrix[maxrow-1][1]};
-		matrixResult[maxrow][0] = median(temp1, 3);
-		
+		matrixResult[maxrow][0] = (matrix[maxrow][1] + matrix[maxrow-1][0] + matrix[maxrow-1][1]) / 3;
 		// borda dir superior
-		int temp2[3] = {matrix[0][maxcol-1],matrix[1][maxcol],matrix[1][maxcol-1]};
-		matrixResult[0][maxcol] = median(temp2, 3);
-		
+		matrixResult[0][maxcol] = (matrix[0][maxcol-1] + matrix[1][maxcol] + matrix[1][maxcol-1]) / 3;
 		// borda dir inferior
-		int temp3[3] = {matrix[maxrow][maxcol-1],matrix[maxrow-1][maxcol],matrix[maxrow-1][maxcol-1]};
-		matrixResult[maxrow][maxcol] = median(temp3, 3);
+		matrixResult[maxrow][maxcol] = (matrix[maxrow][maxcol-1] + matrix[maxrow-1][maxcol] + matrix[maxrow-1][maxcol-1]) / 3;
 		
 		//lateral esquerda
 		for (int i = 1; i < numrows; ++i){
-			int temp4[5] = {matrix[i-1][0],matrix[i-1][1],matrix[i][1],matrix[i+1][1],matrix[i+1][0]};
-			matrixResult[i][0] = median(temp4, 5);
+			matrixResult[i][0] = (matrix[i-1][0] + matrix[i-1][1] + matrix[i][1] + matrix[i+1][1] + matrix[i+1][0]) / 5;
 		}
 		
 		//lateral direita
 		for (int i = 1; i < numrows; ++i){
-			int temp5[5] = {matrix[i-1][maxcol],matrix[i-1][maxcol-1],matrix[i][maxcol-1],matrix[i+1][maxcol-1],matrix[i+1][maxcol]};
-			matrixResult[i][maxcol] = median(temp5, 5);
+			matrixResult[i][maxcol] = (matrix[i-1][maxcol] + matrix[i-1][maxcol-1] + matrix[i][maxcol-1] + matrix[i+1][maxcol-1] + matrix[i+1][maxcol]) / 5;
 		}
 		
 		// teto
 		for (int j = 1; j < numcols; ++j){
-			int temp6[5] = {matrix[0][j-1],matrix[1][j-1],matrix[1][j],matrix[0][j+1],matrix[1][j+1]};
-			matrixResult[0][j] = median(temp6, 5);
+			matrixResult[0][j] = (matrix[0][j-1] + matrix[1][j-1] + matrix[1][j] + matrix[0][j+1] + matrix[1][j+1]) / 5;
 			}
 		
 		// chao
 		for (int j = 1; j < numcols; ++j){
-			int temp7[5] = {matrix[maxrow][j-1],matrix[maxrow-1][j-1],matrix[maxrow-1][j],matrix[maxrow-1][j+1],matrix[maxrow][j+1]};
-			matrixResult[maxrow][j] = median(temp7, 5);
+			matrixResult[maxrow][j] = (matrix[maxrow][j-1] + matrix[maxrow-1][j-1] + matrix[maxrow-1][j] + matrix[maxrow-1][j+1] + matrix[maxrow][j+1]) / 5;
 			}
 			
 		// meio
 		for (int i = 1; i < maxrow; ++i){
 			for (int j = 1; j < maxcol; ++j){
-				int tempm[] = {matrix[i-1][j],matrix[i+1][j],matrix[i][j-1],matrix[i][j+1],matrix[i-1][j-1],matrix[i-1][j+1],matrix[i+1][j-1],matrix[i+1][j+1]};
-				matrixResult[i][j] = median(tempm, 8);
+				matrixResult[i][j] = (matrix[i-1][j] + matrix[i+1][j] + matrix[i][j-1] + matrix[i][j+1] + matrix[i-1][j-1] + matrix[i-1][j+1] + matrix[i+1][j-1] + matrix[i+1][j+1]) / 8;
 			}
 		}	
 		
 		// exporta imagem
 		string rowline = "";
+		string text("Large text stored as a string\n");
 		
 		FILE *o_file = fopen((fileName + " (Done).pgm").c_str(), "w+");
 		
@@ -181,6 +161,7 @@ int main (){
 	else {
 		cout << "Couldn't open file\n";
 	}
+	
 	
 	return 0; 
 }
