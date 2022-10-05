@@ -40,10 +40,17 @@ int main (){
 		
 		// pega o formato
 		getline (file, format);
+		if (format.find("#") == 0){
+			getline (file, format);
+		}
 		cout << "Format: " <<format << endl;
 		
 		// pega as linhas e colunas
 		getline (file, temp);
+		if (temp.find("#") == 0){
+			getline (file, temp);
+		}
+		
 		string s = "";
 		for (char x : temp)
 	    {
@@ -61,6 +68,9 @@ int main (){
 	    
 	    // pega o valor maximo
 	    getline (file, max);
+	    if (max.find("#") == 0){
+			getline (file, max);
+		}
 	    maxvalue = stoi(max);
 	    cout << "Max value: " << maxvalue << endl;
 	    
@@ -73,6 +83,9 @@ int main (){
 			j = 0;
 			s = "";
 			getline (file, myline);
+			if (myline.find("#") == 0){
+				getline (file, myline);
+			}
 			for (char x : myline)
 		    {
 		        if (x == ' ')
