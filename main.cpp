@@ -26,7 +26,6 @@ int main (){
 	string max;
     string temp;
     
-    int rc[2]{};
     int numrows = 0, numcols = 0, maxvalue = 0;
     int j = 0;
 
