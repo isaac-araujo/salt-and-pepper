@@ -4,8 +4,6 @@
 #include <vector>
 #include <bits/stdc++.h>
 
-//TODO: lidar com linhas comentadas
-
 using namespace std;
 
 int median(int arr[], int size){
