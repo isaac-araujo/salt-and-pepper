@@ -37,21 +37,21 @@ int main (){
 		
 		// pega o formato
 		getline (file, format);
-		if (format.find("#") == 0){
+		while (format.find("#") == 0){
 			getline (file, format);
 		}
 		cout << "Format: " <<format << endl;
 		
 		// pega as linhas e colunas
 		getline (file, temp);
-		if (temp.find("#") == 0){
+		while (temp.find("#") == 0){
 			getline (file, temp);
 		}
 		
 		string s = "";
 		for (char x : temp)
 	    {
-	        if (x == ' ')
+	        while (x == ' ')
 	        {
 	        	numcols = stoi(s);
 	            s = "";
@@ -80,7 +80,7 @@ int main (){
 			j = 0;
 			s = "";
 			getline (file, myline);
-			if (myline.find("#") == 0){
+			while (myline.find("#") == 0){
 				getline (file, myline);
 			}
 			for (char x : myline)
@@ -179,7 +179,7 @@ int main (){
 				fwrite(rowline.c_str(), 1, rowline.size(), o_file);
 				rowline = "";
 			}
-	        cerr << "Salt And Pepper Done!" << endl;
+	        cout << "Salt And Pepper Done!" << endl;
 	    }
 		
 //		printa arquivo
