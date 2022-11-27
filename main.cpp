@@ -17,7 +17,6 @@ int main (){
 	
 	ifstream file;
 	fstream outfile;
-	
 	string fileName;
     string myline;
     string format;
@@ -181,12 +180,6 @@ int main (){
 			}
 	        cout << "Salt And Pepper Done!" << endl;
 	    }
-		
-//		printa arquivo
-//		while ( file ) { 
-//			getline (file, myline);
-//			cout << myline << endl;
-//		}
 	}
 	else {
 		cout << "Couldn't open file\n";
@@ -194,13 +187,3 @@ int main (){
 	
 	return 0; 
 }
-
-
-		// printa matrix
-//		cout << endl;
-//		for (int i = 0; i < numrows; ++i){
-//			for (int j = 0; j < numcols; ++j){
-//				cout << matrix[i][j] << " ";
-//			}
-//			cout << endl;
-//		}
